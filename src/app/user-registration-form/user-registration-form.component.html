@@ -1,0 +1,178 @@
+<div class="Jumbotron">
+  <div class="card align-items-center bg-light">
+    <div class="card-body wd-75">
+      <form [formGroup]="myForm">
+        <h6 class="heading-small text-muted">User information</h6>
+        <div class="pl-lg-4">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group focused">
+                <label class="form-control-label" for="input-name">Name</label>
+                <input
+                  formControlName="name"
+                  type="text"
+                  id="input-name"
+                  class="form-control form-control-alternative"
+                  placeholder="Name"
+                />
+                <small
+                  *ngIf="name.invalid && name.touched"
+                  class="form-text text-danger"
+                >
+                  Your input is invalid.
+                </small>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-username"
+                  >User Name</label
+                >
+                <input
+                  formControlName="username"
+                  type="username"
+                  id="input-username"
+                  class="form-control form-control-alternative"
+                  placeholder="User Name"
+                />
+                <small class="form-text text-muted">
+                  Your username must be 8-20 characters, contain letters,
+                  numbers, one special character, and one capital letter.
+                </small>
+                <small
+                  *ngIf="username.invalid && username.touched"
+                  class="form-text text-danger"
+                >
+                  Please enter your username
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label" for="website-email"
+                >Website</label
+              >
+              <input
+                formControlName="website"
+                type="website"
+                id="input-website"
+                class="form-control form-control-alternative"
+                placeholder="your-website.com"
+              />
+              <small
+                *ngIf="website.invalid && website.touched"
+                class="form-text text-danger"
+              >
+                Your input is invalid.
+              </small>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label" for="input-email"
+                >Email address</label
+              >
+              <input
+                formControlName="email"
+                type="email"
+                id="input-email"
+                class="form-control form-control-alternative"
+                placeholder="email@example.com"
+              />
+              <small
+                *ngIf="email.invalid && email.touched"
+                class="form-text text-danger"
+              >
+                Your email address is invalid.
+              </small>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <h6 class="heading-small text-muted mb-4">Contact information</h6>
+          <div class="pl-lg-4">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group focused">
+                  <label class="form-control-label" for="input-address"
+                    >Address</label
+                  >
+                  <input
+                    formControlName="address"
+                    id="input-address"
+                    class="form-control form-control-alternative"
+                    placeholder="Address"
+                    type="text"
+                  />
+                  <small
+                    *ngIf="address.invalid && address.touched"
+                    id="addressHelpBlock"
+                    class="form-text text-danger"
+                  >
+                    Your input is invalid.
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group focused">
+                  <label class="form-control-label" for="input-phone"
+                    >Phone Number</label
+                  >
+                  <input
+                    formControlName="phone"
+                    type="text"
+                    id="input-phone"
+                    class="form-control form-control-alternative"
+                    placeholder="Phone Number"
+                  />
+                  <small
+                    *ngIf="phone.invalid && phone.touched"
+                    class="form-text text-danger"
+                  >
+                    Your phone number is invalid.
+                  </small>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group focused">
+                  <label class="form-control-label" for="input-company"
+                    >Company</label
+                  >
+                  <input
+                    formControlName="company"
+                    type="search"
+                    id="input-company"
+                    class="form-control form-control-alternative dropdown-toggle"
+                    placeholder="Company"
+                  />
+                  <small
+                    *ngIf="company.invalid && company.touched"
+                    class="form-text text-danger"
+                  >
+                    Your input is invalid.
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col text-center mb-4">
+                  <button
+                    class="btn btn-primary btn-lg"
+                    (click)="onSubmit()"
+                    [disabled]="this.myForm.status !== 'VALID'"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

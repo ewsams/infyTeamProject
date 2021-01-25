@@ -1,0 +1,45 @@
+<table class="table table-hover table-dark mt-5">
+  <thead>
+    <tr>
+      <th scope="col">Id#</th>
+      <th scope="col">Name</th>
+      <th scope="col">City</th>
+      <th scope="col">Company Name</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let user of users">
+    <tr>
+      <th scope="row" class="clean-td">{{ user.id }}</th>
+      <td class="clean-td">{{ user.name }}</td>
+      <td class="clean-td">{{ user.address.city }}</td>
+      <td class="clean-td">{{ user.company.name }}</td>
+      <td class="clean-td">
+        <span
+          class="btn btn-info"
+          (click)="editUser(user)"
+          style="width: 90%"
+        >
+          user info
+        </span>
+      </td>
+      <td class="clean-td">
+        <span
+          class="btn btn-success"
+          (click)="editUser(user)"
+          style="width: 90%"
+        >
+          edit user
+        </span>
+      </td>
+      <td class="clean-td">
+        <span
+          class="btn btn-danger"
+          (click)="editUser(user)"
+          style="width: 90%"
+        >
+          delete user
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
