@@ -13,25 +13,24 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class Userervice {
-  userUrl = 'http://localhost:3000/users';
+  usersUrl = 'http://localhost:3000/users';
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.userUrl}`);
+    return this.http.get<User[]>(`${this.usersUrl}`);
   }
+
   deleteUser(user: User): Observable<User> {
-    const url = `${this.userUrl}/${user.id}`;
+    const url = `${this.usersUrl}/${user.id}`;
     return this.http.delete<User>(url, httpOptions);
   }
 
-  // Add User
   addUser(user: User): Observable<User> {
-    return this.http.post<User>(this.userUrl, user, httpOptions);
+    return this.http.post<User>(this.usersUrl, user, httpOptions);
   }
 
-  // Toggle Completed
   updateUser(user: User): Observable<any> {
-    const url = `${this.userUrl}/${user.id}`;
+    const url = `${this.usersUrl}/${user.id}`;
     return this.http.put(url, user, httpOptions);
   }
 }

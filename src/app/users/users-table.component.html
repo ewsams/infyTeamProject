@@ -1,4 +1,22 @@
-<table class="table table-hover table-dark mt-5">
+<div
+  *ngIf="deleteNotification"
+  class="alert alert-danger container"
+  style="width: 30%"
+>
+  <div class="row justify-content-center align-items-center">
+    <strong>Are you sure you want to delete this User?</strong>
+    <div class="mt-3">
+      <span
+        class="btn btn-primary"
+        (click)="deleteNotification = !deleteNotification"
+        >Cancel</span
+      >
+      <span class="btn btn-danger ml-4" (click)="deleteUser()">Delete</span>
+    </div>
+  </div>
+</div>
+
+<table class="table table-hover table-dark mt-3">
   <thead>
     <tr>
       <th scope="col">Id#</th>
@@ -14,11 +32,7 @@
       <td class="clean-td">{{ user.address.city }}</td>
       <td class="clean-td">{{ user.company.name }}</td>
       <td class="clean-td">
-        <span
-          class="btn btn-info"
-          (click)="editUser(user)"
-          style="width: 90%"
-        >
+        <span class="btn btn-info" (click)="editUser(user)" style="width: 90%">
           user info
         </span>
       </td>
@@ -26,7 +40,7 @@
         <span
           class="btn btn-success"
           (click)="editUser(user)"
-          style="width: 90%"
+          style="width: 92%"
         >
           edit user
         </span>
@@ -34,7 +48,7 @@
       <td class="clean-td">
         <span
           class="btn btn-danger"
-          (click)="editUser(user)"
+          (click)="deleteWarning(user)"
           style="width: 90%"
         >
           delete user

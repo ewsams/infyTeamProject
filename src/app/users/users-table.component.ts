@@ -9,6 +9,8 @@ import { Userervice } from '../services/user.service';
 })
 export class UsersTableComponent implements OnInit {
   users: User[] = [];
+  deleteNotification = false;
+  user: User;
   constructor(private userService: Userervice) {}
 
   ngOnInit() {
@@ -20,5 +22,17 @@ export class UsersTableComponent implements OnInit {
 
   editUser(user: User) {
     return console.log(user.name);
+  }
+
+  deleteWarning(user: User) {
+    this.user = user;
+    this.deleteNotification = true;
+    window.scrollTo(0, 0);
+  }
+  deleteUser() {
+    this.userService.deleteUser(this.user).subscribe((response) => {
+      console.log(response);
+      location.reload();
+    });
   }
 }

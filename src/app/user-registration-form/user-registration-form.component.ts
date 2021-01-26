@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from '../models/Users';
 import { Userervice } from '../services/user.service';
 
@@ -9,71 +10,142 @@ import { Userervice } from '../services/user.service';
   styleUrls: ['./user-registration-form.component.scss'],
 })
 export class UserRegistrationFormComponent implements OnInit {
+  userId: number;
   userFormObject: User;
-  myForm: FormGroup;
-  id: number;
-  constructor(private fb: FormBuilder, private userService: Userervice) {}
+  myForm1: FormGroup;
+  myForm2: FormGroup;
+  myForm3: FormGroup;
+  userList: User[];
+  constructor(
+    private fb: FormBuilder,
+    private userService: Userervice,
+    private router: Router
+  ) {}
 
   onSubmit() {
-    if (this.myForm.status === 'VALID') {
+    if (
+      this.myForm1.status === 'VALID' &&
+      this.myForm2.status === 'VALID' &&
+      this.myForm3.status === 'VALID'
+    ) {
       this.userFormObject = {
-        id: this.createId(),
+        id: this.userId,
         name: this.name.value,
         username: this.username.value,
         email: this.email.value,
-        address: this.address.value,
         phone: this.phone.value,
         website: this.website.value,
-        company: this.company.value,
+        address: {
+          street: this.street.value,
+          suite: this.suite.value,
+          city: this.city.value,
+          zipcode: this.zipcode.value,
+          geo: {
+            lat: '-37.3159',
+            lng: '81.1496',
+          },
+        },
+        company: {
+          name: this.companyName.value,
+          catchPhrase: this.catchPhrase.value,
+          bs: this.bs.value,
+        },
       };
       console.log(this.userFormObject);
-      this.userService.addUser(this.userFormObject);
+      this.userService.addUser(this.userFormObject).subscribe((response) => {
+        console.log(response);
+      });
+      console.log(this.userList);
+      this.router.navigate(['http://localhost:4200/home']);
     }
   }
 
   ngOnInit() {
-    // form for database
-    this.myForm = this.fb.group({
+    this.createId();
+    // Gathering Non Nested Values
+    this.myForm1 = this.fb.group({
       name: ['', Validators.required],
-      username: ['', [Validators.required]],
+      username: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+          ),
+        ],
+      ],
       email: ['', [Validators.required, Validators.email]],
-      address: ['', Validators.required],
       phone: ['', [Validators.required, Validators.maxLength(10)]],
       website: ['', Validators.required],
-      company: ['', Validators.required],
+    });
+
+    // Gathering Address Values
+    this.myForm2 = this.fb.group({
+      street: ['', Validators.required],
+      suite: ['', [Validators.required, Validators.maxLength(4)]],
+      city: ['', Validators.required],
+      zipcode: ['', [Validators.required, Validators.maxLength(5)]],
+      Geo: {
+        lat: '',
+        lng: '',
+      },
+    });
+
+    // Gathering Company Values
+    this.myForm3 = this.fb.group({
+      companyName: ['', Validators.required],
+      catchPhrase: ['', Validators.required],
+      bs: ['', Validators.required],
     });
   }
-  // Getters for working with our form
+
+  // Getters for working with our Form1
   get name() {
-    return this.myForm.get('name');
+    return this.myForm1.get('name');
   }
   get username() {
-    return this.myForm.get('username');
-  }
-  get password() {
-    return this.myForm.get('password');
+    return this.myForm1.get('username');
   }
 
-  get email() {
-    return this.myForm.get('email');
-  }
-  get address() {
-    return this.myForm.get('address');
-  }
-  get company() {
-    return this.myForm.get('company');
-  }
   get website() {
-    return this.myForm.get('website');
+    return this.myForm1.get('website');
   }
   get phone() {
-    return this.myForm.get('phone');
+    return this.myForm1.get('phone');
+  }
+  get email() {
+    return this.myForm1.get('email');
   }
 
-  createId(): number {
+  // Getters for working with our Form2
+  get street() {
+    return this.myForm2.get('street');
+  }
+  get suite() {
+    return this.myForm2.get('suite');
+  }
+  get zipcode() {
+    return this.myForm2.get('zipcode');
+  }
+  get city() {
+    return this.myForm2.get('city');
+  }
+
+  // Getters for working with our Form3
+  get companyName() {
+    return this.myForm3.get('companyName');
+  }
+  get catchPhrase() {
+    return this.myForm3.get('catchPhrase');
+  }
+  get bs() {
+    return this.myForm3.get('bs');
+  }
+
+  createId() {
     this.userService.getUsers().subscribe((userList) => {
-      this.id = userList.length + 1;
+      this.userId = userList.length + Math.floor(Math.random() * 100);
+      this.userList = userList;
     });
-    return this.id;
   }
 }
