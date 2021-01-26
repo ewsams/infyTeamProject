@@ -1,0 +1,283 @@
+<div class="Jumbotron">
+  <div class="card align-items-center text-color-light">
+    <div class="card-body wd-75">
+      <form [formGroup]="myForm1">
+        <h6 class="heading-small text-muted">User information</h6>
+        <div class="pl-lg-4">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group focused">
+                <label class="form-control-label" for="input-name">Name</label>
+                <input
+                  formControlName="name"
+                  type="text"
+                  id="input-name"
+                  class="form-control form-control-alternative"
+                />
+                <small
+                  *ngIf="name.invalid && name.touched"
+                  class="form-text text-danger"
+                >
+                  Your input is invalid.
+                </small>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-username"
+                  >User Name</label
+                >
+                <input
+                  formControlName="username"
+                  type="username"
+                  id="input-username"
+                  class="form-control form-control-alternative"
+                />
+                <small class="form-text text-muted">
+                  Your username must be 8-20 characters, contain letters,
+                  numbers, one special character, and one capital letter.
+                </small>
+                <small
+                  *ngIf="username.invalid && username.touched"
+                  class="form-text text-danger"
+                >
+                  Please enter your username
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label class="form-control-label" for="website-email"
+                >Website</label
+              >
+              <input
+                formControlName="website"
+                type="website"
+                id="input-website"
+                class="form-control form-control-alternative"
+              />
+              <small
+                *ngIf="website.invalid && website.touched"
+                class="form-text text-danger"
+              >
+                Your input is invalid.
+              </small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group focused">
+                <label class="form-control-label" for="input-phone"
+                  >Phone Number</label
+                >
+                <input
+                  formControlName="phone"
+                  type="text"
+                  class="form-control form-control-alternative"
+                />
+                <small
+                  *ngIf="phone.invalid && phone.touched"
+                  class="form-text text-danger"
+                >
+                  Your phone number is invalid.
+                </small>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-email"
+                  >Email address</label
+                >
+                <input
+                  formControlName="email"
+                  type="email"
+                  id="input-email"
+                  class="form-control form-control-alternative"
+                />
+                <small
+                  *ngIf="email.invalid && email.touched"
+                  class="form-text text-danger"
+                >
+                  Your email address is invalid.
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <form [formGroup]="myForm2">
+            <!-- Address My Form2-->
+            <h6 class="heading-small text-muted mb-4">Contact information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="input-address"
+                      >Street</label
+                    >
+                    <input
+                      formControlName="street"
+                      id="input-address"
+                      class="form-control form-control-alternative"
+                      type="text"
+                    />
+                    <small
+                      *ngIf="street.invalid && street.touched"
+                      class="form-text text-danger"
+                    >
+                      Your input is invalid.
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="city">City</label>
+                  <input
+                    formControlName="city"
+                    type="text"
+                    class="form-control form-control-alternative"
+                  />
+                  <small
+                    *ngIf="city.invalid && city.touched"
+                    class="form-text text-danger"
+                  >
+                    Your input is invalid.
+                  </small>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="zipcode"
+                    >Zipcode</label
+                  >
+                  <input
+                    formControlName="zipcode"
+                    type="text"
+                    class="form-control form-control-alternative"
+                  />
+                  <small
+                    *ngIf="zipcode.invalid && zipcode.touched"
+                    class="form-text text-danger"
+                  >
+                    Your input is invalid.
+                  </small>
+                </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div class="form-group focused">
+                  <label class="form-control-label" for="input-suite"
+                    >Suite</label
+                  >
+                  <input
+                    formControlName="suite"
+                    type="text"
+                    class="form-control form-control-alternative"
+                  />
+                  <small
+                    *ngIf="suite.invalid && suite.touched"
+                    class="form-text text-danger"
+                  >
+                    Your input is invalid.
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <form [formGroup]="myForm3">
+              <!-- Address My Form2-->
+              <h6 class="heading-small text-muted mb-4">Company information</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-company-name"
+                        >Company Name</label
+                      >
+                      <input
+                        formControlName="companyName"
+                        class="form-control form-control-alternative"
+                        type="text"
+                      />
+                      <small
+                        *ngIf="companyName.invalid && companyName.touched"
+                        class="form-text text-danger"
+                      >
+                        Your input is invalid.
+                      </small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="city"
+                      >Company Catch Phrase</label
+                    >
+                    <input
+                      formControlName="catchPhrase"
+                      type="text"
+                      class="form-control form-control-alternative"
+                    />
+                    <small
+                      *ngIf="catchPhrase.invalid && catchPhrase.touched"
+                      class="form-text text-danger"
+                    >
+                      Your input is invalid.
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-lg-3">
+                  <div class="form-group focused">
+                    <label class="form-control-label" for="input-bs"
+                      >Business Statement</label
+                    >
+                    <input
+                      formControlName="bs"
+                      type="text"
+                      class="form-control form-control-alternative"
+                    />
+                    <small
+                      *ngIf="bs.invalid && bs.touched"
+                      class="form-text text-danger"
+                    >
+                      Your input is invalid.
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container">
+                <div class="row">
+                  <div class="col text-center mb-4">
+                    <button
+                      class="btn btn-success btn-lg"
+                      (click)="updateUserInfo()"
+                      [disabled]="
+                        myForm1.status !== 'VALID' &&
+                        myForm2.status !== 'VALID' &&
+                        myForm3.status !== 'VALID'
+                      "
+                    >
+                      Update User
+                    </button>
+                    <button
+                      class="btn btn-danger btn-lg ml-3"
+                      (click)="activeModal.close('Close click')"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </form>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

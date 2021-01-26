@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/Users';
-import { Userervice } from '../services/user.service';
+import { Userservice } from '../services/user.service';
 
 @Component({
   selector: 'user-app-users-table',
@@ -12,7 +12,7 @@ export class UsersTableComponent implements OnInit {
   users: User[] = [];
   deleteNotification = false;
   user: User;
-  constructor(private userService: Userervice, private router: Router) {}
+  constructor(private userService: Userservice, private router: Router) {}
 
   ngOnInit() {
     this.userService.getUsers().subscribe((users) => {
@@ -22,7 +22,8 @@ export class UsersTableComponent implements OnInit {
   }
 
   editUser(user: User) {
-    return console.log(user.name);
+    this.userService.getUserSelection(user);
+    console.log(user);
   }
 
   onUserInfoSelection(user: User) {

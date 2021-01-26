@@ -1,7 +1,7 @@
 <div
   *ngIf="deleteNotification"
   class="alert alert-danger container"
-  style="width: 30%"
+  style="width: 40%"
 >
   <div class="row justify-content-center align-items-center">
     <strong>Are you sure you want to delete {{ user.name }}?</strong>
@@ -41,12 +41,10 @@
         </span>
       </td>
       <td class="clean-td">
-        <span
-          class="btn btn-success"
-          (click)="editUser(user)"
-          style="width: 92%"
-        >
-          edit user
+        <span>
+          <user-app-ngbd-modal-component
+            [user]="user"
+          ></user-app-ngbd-modal-component>
         </span>
       </td>
       <td class="clean-td">

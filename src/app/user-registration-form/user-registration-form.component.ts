@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../models/Users';
-import { Userervice } from '../services/user.service';
+import { Userservice } from '../services/user.service';
 
 @Component({
   selector: 'user-app-user-registration-form',
@@ -18,7 +18,7 @@ export class UserRegistrationFormComponent implements OnInit {
   userList: User[];
   constructor(
     private fb: FormBuilder,
-    private userService: Userervice,
+    private userService: Userservice,
     private router: Router
   ) {}
 

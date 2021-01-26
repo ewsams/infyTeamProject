@@ -12,9 +12,9 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class Userervice {
+export class Userservice {
   usersUrl = 'http://localhost:3000/users';
-  userSelection = new BehaviorSubject<any>(`<h3>Please Select a User</h3>`);
+  userSelection = new BehaviorSubject<any>(null);
   $userSelectionObservable = this.userSelection.asObservable();
 
   constructor(private http: HttpClient) {}

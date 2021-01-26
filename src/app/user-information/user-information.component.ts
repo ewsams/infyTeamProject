@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/Users';
-import { Userervice } from '../services/user.service';
+import { Userservice } from '../services/user.service';
 
 @Component({
   selector: 'user-app-user-information',
@@ -11,11 +11,14 @@ import { Userervice } from '../services/user.service';
 export class UserInformationComponent implements OnInit {
   userSelection: User;
 
-  constructor(private userService: Userervice, private router: Router) {}
+  constructor(private userService: Userservice, private router: Router) {}
 
   ngOnInit() {
     this.userService.$userSelectionObservable.subscribe((userSelection) => {
       this.userSelection = userSelection;
+      if (this.userSelection === null) {
+        this.returnHome();
+      }
     });
   }
   returnHome() {
