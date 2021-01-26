@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/Users';
 
 const httpOptions = {
@@ -14,6 +14,9 @@ const httpOptions = {
 })
 export class Userervice {
   usersUrl = 'http://localhost:3000/users';
+  userSelection = new BehaviorSubject<any>(`<h3>Please Select a User</h3>`);
+  $userSelectionObservable = this.userSelection.asObservable();
+
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<User[]> {
@@ -32,5 +35,9 @@ export class Userervice {
   updateUser(user: User): Observable<any> {
     const url = `${this.usersUrl}/${user.id}`;
     return this.http.put(url, user, httpOptions);
+  }
+
+  getUserSelection(user: User) {
+    this.userSelection.next(user);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../models/Users';
 import { Userervice } from '../services/user.service';
 
@@ -11,7 +12,7 @@ export class UsersTableComponent implements OnInit {
   users: User[] = [];
   deleteNotification = false;
   user: User;
-  constructor(private userService: Userervice) {}
+  constructor(private userService: Userervice, private router: Router) {}
 
   ngOnInit() {
     this.userService.getUsers().subscribe((users) => {
@@ -22,6 +23,12 @@ export class UsersTableComponent implements OnInit {
 
   editUser(user: User) {
     return console.log(user.name);
+  }
+
+  onUserInfoSelection(user: User) {
+    this.router.navigate(['user-selected', user.id]);
+    this.userService.getUserSelection(user);
+    console.log(user);
   }
 
   deleteWarning(user: User) {

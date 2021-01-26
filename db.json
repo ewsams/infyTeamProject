@@ -3298,6 +3298,29 @@
         "catchPhrase": "University of Arizona",
         "bs": "Hello"
       }
+    },
+    {
+      "id": 93,
+      "name": "Teresa Pugliese",
+      "username": "211233Edward!",
+      "email": "isabelsams80@gmail.com",
+      "phone": "5619294178",
+      "website": "website.com",
+      "address": {
+        "street": "774 Ave C.",
+        "suite": "223",
+        "city": "Redondo Beach",
+        "zipcode": "90277",
+        "geo": {
+          "lat": "-37.3159",
+          "lng": "81.1496"
+        }
+      },
+      "company": {
+        "name": "University of Miami",
+        "catchPhrase": "University of Miami",
+        "bs": "Go Canes"
+      }
     }
   ],
   "posts": [
