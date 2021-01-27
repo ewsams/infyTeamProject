@@ -10,6 +10,7 @@ import { Userservice } from '../services/user.service';
 })
 export class UsersTableComponent implements OnInit {
   users: User[] = [];
+  searchValue: string;
   deleteNotification = false;
   user: User;
   constructor(private userService: Userservice, private router: Router) {}

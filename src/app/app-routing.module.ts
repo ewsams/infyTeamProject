@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'home', component: UsersTableComponent },
   { path: 'user-form', component: UserRegistrationFormComponent },
   { path: 'user-selected/:id', component: UserInformationComponent },
-  { path: 'user-form', component: UserFormComponent },
   { path: '**', redirectTo: 'home' },
 ];
 
