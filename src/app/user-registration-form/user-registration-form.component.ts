@@ -148,4 +148,7 @@ export class UserRegistrationFormComponent implements OnInit {
       this.userList = userList;
     });
   }
+  goHome() {
+    this.router.navigate(['http://localhost:4200/home']);
+  }
 }

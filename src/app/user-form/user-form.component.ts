@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from '../models/Users';
 import { Userservice } from '../services/user.service';
@@ -18,6 +19,7 @@ export class UserFormComponent implements OnInit {
   myForm3: FormGroup;
   userList: User[];
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private userService: Userservice,
     public activeModal: NgbActiveModal
@@ -70,6 +72,9 @@ export class UserFormComponent implements OnInit {
     });
   }
 
+  get id() {
+    return this.updateUser.id;
+  }
   // Getters for working with our Form1
   get name() {
     return this.myForm1.get('name');
@@ -114,8 +119,39 @@ export class UserFormComponent implements OnInit {
   }
 
   updateUserInfo() {
-    this.userService.updateUser(this.updateUser).subscribe((response) => {
-      console.log(response);
-    });
+    if (
+      this.myForm1.status === 'VALID' &&
+      this.myForm2.status === 'VALID' &&
+      this.myForm3.status === 'VALID'
+    ) {
+      this.userFormObject = {
+        id: this.id,
+        name: this.name.value,
+        username: this.username.value,
+        email: this.email.value,
+        phone: this.phone.value,
+        website: this.website.value,
+        address: {
+          street: this.street.value,
+          suite: this.suite.value,
+          city: this.city.value,
+          zipcode: this.zipcode.value,
+          geo: {
+            lat: '-37.3159',
+            lng: '81.1496',
+          },
+        },
+        company: {
+          name: this.companyName.value,
+          catchPhrase: this.catchPhrase.value,
+          bs: this.bs.value,
+        },
+      };
+      this.userService.updateUser(this.userFormObject).subscribe((response) => {
+        console.log(response);
+      });
+      this.activeModal.close();
+      location.reload();
+    }
   }
 }
